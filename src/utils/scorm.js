@@ -147,11 +147,9 @@ function standaloneCSS() {
 :root { --blue:#3250E6; --wheat:#FFEAB1; --warm:#F8F4E7; --black:#1A1A1A; }
 * { box-sizing: border-box; }
 html, body { height:100%; margin:0; padding:0; }
-body { font-family:'Lato',Arial,sans-serif; background:#ECEEF3; color:var(--black); display:flex; align-items:center; justify-content:center; padding:24px; }
-/* Wrap replicates the app's stage frame — 16:10 flex column so the card fills height */
-.wrap { width:100%; max-width:960px; aspect-ratio:16/10; background:#fff; border-radius:14px; box-shadow:0 20px 40px -20px rgba(15,20,60,.18); display:flex; flex-direction:column; padding:28px 32px 24px; overflow:hidden; }
-/* When the viewport is shorter than the frame, allow it to fill height instead */
-@media (max-aspect-ratio:16/10) { .wrap { aspect-ratio:unset; height:calc(100vh - 48px); } }
+body { font-family:'Lato',Arial,sans-serif; background:#ECEEF3; color:var(--black); display:flex; align-items:center; justify-content:center; padding:24px; box-sizing:border-box; }
+/* Height is set by JS (applyWrapSize) to guarantee 16:10 ratio inside any LMS iframe */
+.wrap { width:100%; max-width:960px; background:#fff; border-radius:14px; box-shadow:0 20px 40px -20px rgba(15,20,60,.18); display:flex; flex-direction:column; padding:28px 32px 24px; box-sizing:border-box; overflow:hidden; }
 .top { display:flex; justify-content:space-between; font-weight:700; font-size:14px; color:var(--blue); margin-bottom:8px; flex-shrink:0; }
 .top .side { color:#6b7280; font-weight:400; }
 .bar { height:8px; border-radius:999px; background:var(--wheat); overflow:hidden; margin-bottom:18px; flex-shrink:0; }
@@ -210,6 +208,13 @@ function standaloneJS() {
   var pos = -1, side = 'front';
   var total = set.cards.length;
 
+  function applyWrapSize(){
+    var wrap = root.querySelector('.wrap');
+    if(!wrap) return;
+    var w = Math.min(wrap.offsetWidth, 960);
+    wrap.style.height = Math.round(w * 10 / 16) + 'px';
+  }
+
   function render(){
     var html = '<div class="wrap '+(variant?'variant-'+variant:'')+'">';
     if(pos === -1){ html += titleCard(); }
@@ -219,7 +224,10 @@ function standaloneJS() {
     root.innerHTML = html;
     bind();
     if(pos >= 0 && pos < total) fitAnswer();
+    applyWrapSize();
   }
+
+  window.addEventListener('resize', applyWrapSize);
   function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
   function titleCard(){
     var bg = set.hero ? 'background-image:url('+JSON.stringify(set.hero).slice(1,-1)+')' : 'background:var(--blue)';
