@@ -146,13 +146,18 @@ function standaloneCSS() {
   return `@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&family=Oswald:wght@700&display=swap');
 :root { --blue:#3250E6; --wheat:#FFEAB1; --warm:#F8F4E7; --black:#1A1A1A; }
 * { box-sizing: border-box; }
-body { margin:0; font-family: 'Lato', Arial, sans-serif; background:#fff; color:var(--black); min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px; }
-.wrap { width:100%; max-width:960px; }
-.top { display:flex; justify-content:space-between; font-weight:700; font-size:14px; color:var(--blue); margin-bottom:8px; }
+html, body { height:100%; margin:0; padding:0; }
+body { font-family:'Lato',Arial,sans-serif; background:#ECEEF3; color:var(--black); display:flex; align-items:center; justify-content:center; padding:24px; }
+/* Wrap replicates the app's stage frame — 16:10 flex column so the card fills height */
+.wrap { width:100%; max-width:960px; aspect-ratio:16/10; background:#fff; border-radius:14px; box-shadow:0 20px 40px -20px rgba(15,20,60,.18); display:flex; flex-direction:column; padding:28px 32px 24px; overflow:hidden; }
+/* When the viewport is shorter than the frame, allow it to fill height instead */
+@media (max-aspect-ratio:16/10) { .wrap { aspect-ratio:unset; height:calc(100vh - 48px); } }
+.top { display:flex; justify-content:space-between; font-weight:700; font-size:14px; color:var(--blue); margin-bottom:8px; flex-shrink:0; }
 .top .side { color:#6b7280; font-weight:400; }
-.bar { height:8px; border-radius:999px; background:var(--wheat); overflow:hidden; margin-bottom:18px; }
+.bar { height:8px; border-radius:999px; background:var(--wheat); overflow:hidden; margin-bottom:18px; flex-shrink:0; }
 .bar i { display:block; height:100%; background:var(--blue); transition: width .3s ease; }
-.flip { perspective:1600px; aspect-ratio:16/9; margin-bottom:18px; }
+/* Flip card fills all remaining vertical space — matches live preview behaviour */
+.flip { perspective:1600px; flex:1; min-height:0; margin-bottom:18px; }
 .flip .inner { position:relative; width:100%; height:100%; transform-style:preserve-3d; transition:transform .55s cubic-bezier(.2,.7,.2,1); }
 .flip.flipped .inner { transform:rotateY(180deg); }
 .face { position:absolute; inset:0; border-radius:12px; backface-visibility:hidden; -webkit-backface-visibility:hidden; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:36px 40px; text-align:center; cursor:pointer; font-weight:700; }
@@ -166,18 +171,19 @@ body { margin:0; font-family: 'Lato', Arial, sans-serif; background:#fff; color:
 .back .scroll.scrolls { justify-content:flex-start; }
 .a { line-height:1.35; max-width:90%; }
 .tap { margin-top:20px; font-size:13px; color:#6b7280; font-weight:400; }
-.row { display:flex; justify-content:space-between; gap:12px; align-items:center; }
+.row { display:flex; justify-content:space-between; gap:12px; align-items:center; flex-shrink:0; }
 .btn { background:var(--wheat); color:var(--blue); border:none; padding:10px 18px; border-radius:999px; font-weight:700; font-size:14px; cursor:pointer; font-family:inherit; }
 .btn:disabled { opacity:.4; cursor:not-allowed; }
 .ghost { background:transparent; border:none; color:var(--black); font-weight:700; cursor:pointer; padding:10px; font-family:inherit; }
-.title-card { aspect-ratio:16/9; border-radius:12px; background-size:cover; background-position:center; position:relative; display:flex; align-items:center; justify-content:center; padding:36px; margin-bottom:18px; overflow:hidden; }
+/* Title and done cards fill the same space as the flip card */
+.title-card { flex:1; min-height:0; border-radius:12px; background-size:cover; background-position:center; position:relative; display:flex; align-items:center; justify-content:center; padding:36px; overflow:hidden; }
 .title-card::before { content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.35)); }
 .title-box { position:relative; z-index:1; background:rgba(255,255,255,.8); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); padding:32px 40px; border-radius:14px; text-align:center; max-width:640px; }
 .kicker { font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--blue); font-weight:700; margin-bottom:10px; }
 .title { font-size:clamp(28px, 4vw, 44px); margin:0 0 10px; font-weight:700; line-height:1.1; color:var(--black); }
 .sub { color:#303b66; font-size:16px; line-height:1.5; margin:0 0 22px; }
 .start { background:var(--blue); color:#fff; padding:12px 28px; border:none; border-radius:999px; font-weight:700; font-size:15px; cursor:pointer; font-family:inherit; }
-.done { background:var(--blue); color:#fff; padding:48px; border-radius:12px; text-align:center; aspect-ratio:16/9; display:flex; flex-direction:column; align-items:center; justify-content:center; margin-bottom:18px; }
+.done { flex:1; min-height:0; background:var(--blue); color:#fff; border-radius:12px; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:36px; }
 .done h3 { font-size:clamp(24px, 3vw, 36px); margin:0 0 10px; font-weight:700; }
 .kbd { display:inline-block; border:1px solid rgba(0,0,0,.2); border-bottom-width:2px; border-radius:4px; padding:1px 6px; font-family:monospace; font-size:11px; background:#fff; }
 .variant-editorial .front { background:var(--warm); border:2px solid var(--blue); border-radius:0; }
