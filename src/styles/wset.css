@@ -1,0 +1,184 @@
+/* =========================================================
+   WSET Design System — Colors & Type
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500&display=swap');
+
+/* Lato — provided by WSET (local) */
+@font-face {
+  font-family: 'Lato';
+  src: url('/fonts/Lato-Regular.woff') format('woff');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Lato';
+  src: url('/fonts/Lato-Italic.woff') format('woff');
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: 'Lato';
+  src: url('/fonts/Lato-Bold.woff') format('woff');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+:root {
+  /* -------- Brand colors — primary -------- */
+  --wset-heritage-blue: #3250E6;
+
+  /* -------- Secondary -------- */
+  --wset-warm-grey: #F8F4E7;
+  --wset-wheat:     #FFEAB1;
+  --wset-black:     #1A1A1A;
+  --wset-white:     #FFFFFF;
+
+  /* -------- Tertiary (accent — use sparingly) -------- */
+  --wset-grass:   #44A75F;
+  --wset-sun:     #FFCF5E;
+  --wset-harvest: #E6734F;
+
+  /* -------- Semantic roles -------- */
+  --fg-primary:   var(--wset-black);
+  --fg-brand:     var(--wset-heritage-blue);
+  --fg-on-brand:  var(--wset-white);
+  --fg-accent-on-brand: var(--wset-wheat);
+  --bg-default:   var(--wset-white);
+  --bg-alt:       var(--wset-warm-grey);
+  --bg-brand:     var(--wset-heritage-blue);
+  --bg-wheat:     var(--wset-wheat);
+  --border-subtle: rgba(26,26,26,0.12);
+  --border-brand:  var(--wset-heritage-blue);
+
+  /* -------- Type families -------- */
+  --font-headline:  'Oswald', 'Trade Gothic Next LT Pro', 'Arial Narrow', Arial, sans-serif;
+  --font-pullout:   'Fraunces', 'Larken', Georgia, 'Times New Roman', serif;
+  --font-body:      'Lato', 'Elza', Arial, Helvetica, sans-serif;
+  --font-system:    Arial, Helvetica, sans-serif;
+
+  /* -------- Type scale -------- */
+  --fs-display:  clamp(64px, 10vw, 160px);
+  --fs-h1:       clamp(44px, 6vw, 88px);
+  --fs-h2:       clamp(32px, 4vw, 56px);
+  --fs-h3:       28px;
+  --fs-subhead:  20px;
+  --fs-standfirst: 22px;
+  --fs-body:     16px;
+  --fs-small:    14px;
+  --fs-caption:  12px;
+
+  /* -------- Spacing (8pt base) -------- */
+  --space-1: 4px;  --space-2: 8px;   --space-3: 12px;
+  --space-4: 16px; --space-5: 24px;  --space-6: 32px;
+  --space-7: 48px; --space-8: 64px;  --space-9: 96px;
+
+  /* -------- Radii -------- */
+  --radius-button: 999px;
+  --radius-card:   8px;
+  --radius-field:  4px;
+
+  /* -------- Shadow -------- */
+  --shadow-sm: 0 1px 2px rgba(26,26,26,0.06);
+  --shadow-md: 0 6px 20px rgba(26,26,26,0.08);
+
+  /* -------- Layout -------- */
+  --max-content: 1280px;
+  --gutter: 24px;
+}
+
+html, body {
+  margin: 0;
+  background: var(--bg-default);
+  color: var(--fg-primary);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, .h-display, .h-headline {
+  font-family: var(--font-headline);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+  color: var(--fg-brand);
+  margin: 0 0 var(--space-4);
+  text-wrap: balance;
+}
+.h-display { font-size: var(--fs-display); }
+h1         { font-size: var(--fs-h1); }
+h2         { font-size: var(--fs-h2); }
+
+h3, .h-sub {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--fs-h3);
+  letter-spacing: 0;
+  color: var(--fg-brand);
+  margin: 0 0 var(--space-3);
+}
+
+.standfirst, .pullout {
+  font-family: var(--font-pullout);
+  font-weight: 400;
+  font-size: var(--fs-standfirst);
+  line-height: 1.3;
+  color: var(--fg-brand);
+  text-wrap: pretty;
+}
+
+p, .body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  color: var(--fg-primary);
+  margin: 0 0 var(--space-4);
+  text-wrap: pretty;
+}
+
+a {
+  color: var(--fg-brand);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+}
+a:hover { opacity: 0.8; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--fs-body);
+  padding: 14px 28px;
+  border-radius: var(--radius-button);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: background-color .15s ease, color .15s ease, border-color .15s ease, transform .15s ease;
+  text-decoration: none;
+  line-height: 1;
+}
+.btn-primary { background: var(--wset-heritage-blue); color: var(--wset-white); }
+.btn-primary:hover { background: #2A44C9; }
+.btn-primary:active { transform: translateY(1px); }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--wset-heritage-blue);
+  border-color: var(--wset-heritage-blue);
+}
+.btn-secondary:hover { background: var(--wset-heritage-blue); color: var(--wset-white); }
+
+.chip {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--wset-wheat);
+  color: var(--wset-heritage-blue);
+  font-weight: 700;
+  font-size: var(--fs-caption);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
