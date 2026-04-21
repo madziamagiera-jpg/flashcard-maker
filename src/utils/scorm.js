@@ -211,8 +211,14 @@ function standaloneJS() {
   function applyWrapSize(){
     var wrap = root.querySelector('.wrap');
     if(!wrap) return;
-    var w = Math.min(wrap.offsetWidth, 960);
-    wrap.style.height = Math.round(w * 10 / 16) + 'px';
+    var pad = 48;
+    var w = Math.min(window.innerWidth - pad, 960);
+    if(w < 100) return;
+    var h = Math.round(w * 10/16);
+    var maxH = window.innerHeight - pad;
+    if(maxH > 0 && h > maxH){ h = maxH; w = Math.round(h * 16/10); }
+    wrap.style.width = w + 'px';
+    wrap.style.height = h + 'px';
   }
 
   function render(){
@@ -224,10 +230,11 @@ function standaloneJS() {
     root.innerHTML = html;
     bind();
     if(pos >= 0 && pos < total) fitAnswer();
-    applyWrapSize();
+    setTimeout(applyWrapSize, 0);
   }
 
   window.addEventListener('resize', applyWrapSize);
+  window.addEventListener('load', applyWrapSize);
   function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
   function titleCard(){
     var bg = set.hero ? 'background-image:url('+JSON.stringify(set.hero).slice(1,-1)+')' : 'background:var(--blue)';
