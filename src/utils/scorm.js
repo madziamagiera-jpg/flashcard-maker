@@ -147,7 +147,7 @@ function standaloneCSS() {
 :root { --blue:#3250E6; --wheat:#FFEAB1; --warm:#F8F4E7; --black:#1A1A1A; }
 * { box-sizing: border-box; }
 html, body { height:100%; margin:0; padding:0; }
-body { font-family:'Lato',Arial,sans-serif; background:#ECEEF3; color:var(--black); display:flex; align-items:center; justify-content:center; padding:24px; box-sizing:border-box; }
+body { font-family:'Lato',Arial,sans-serif; background:#fff; color:var(--black); display:flex; align-items:center; justify-content:center; padding:24px; box-sizing:border-box; }
 /* Height is set by JS (applyWrapSize) to guarantee 16:10 ratio inside any LMS iframe */
 .wrap { width:100%; max-width:960px; background:#fff; border-radius:14px; box-shadow:0 20px 40px -20px rgba(15,20,60,.18); display:flex; flex-direction:column; padding:28px 32px 24px; box-sizing:border-box; overflow:hidden; }
 .top { display:flex; justify-content:space-between; font-weight:700; font-size:14px; color:var(--blue); margin-bottom:8px; flex-shrink:0; }
