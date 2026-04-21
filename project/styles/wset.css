@@ -1,0 +1,291 @@
+/* =========================================================
+   WSET Design System — Colors & Type
+   Pulled from the WSET Brand Playbook (v240226)
+
+   FONTS
+   - Lato Regular / Bold / Italic  -> supplied by brand team (LOCAL)
+     Used for all subheads, body, UI labels. Replaces Elza.
+   - Oswald 700                     -> Google substitute for Trade
+     Gothic Next LT Pro Bold (display / uppercase headlines).
+   - Fraunces 400/500               -> Google substitute for Larken
+     Regular (pull-outs, standfirsts, serif voice).
+
+   Please ship Trade Gothic Next + Larken when licensed and
+   swap the @font-face blocks below.
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500&display=swap');
+
+/* Lato — provided by WSET (local) */
+@font-face {
+  font-family: 'Lato';
+  src: url('../fonts/Lato-Regular.woff') format('woff'),
+       url('../fonts/Lato-Regular.ttf')  format('truetype');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Lato';
+  src: url('../fonts/Lato-Italic.woff') format('woff'),
+       url('../fonts/Lato-Italic.ttf')  format('truetype');
+  font-weight: 400; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: 'Lato';
+  src: url('../fonts/Lato-Bold.woff') format('woff'),
+       url('../fonts/Lato-Bold.ttf')  format('truetype');
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+
+:root {
+  /* -------- Brand colors — primary -------- */
+  --wset-heritage-blue: #3250E6;
+
+  /* -------- Secondary -------- */
+  --wset-warm-grey: #F8F4E7;   /* background only */
+  --wset-wheat:     #FFEAB1;   /* text OR background */
+  --wset-black:     #1A1A1A;   /* body copy */
+  --wset-white:     #FFFFFF;
+
+  /* -------- Tertiary (accent — use sparingly) -------- */
+  --wset-grass:   #44A75F;
+  --wset-sun:     #FFCF5E;
+  --wset-harvest: #E6734F;
+
+  /* -------- Semantic roles -------- */
+  --fg-primary:   var(--wset-black);
+  --fg-brand:     var(--wset-heritage-blue);
+  --fg-on-brand:  var(--wset-white);
+  --fg-accent-on-brand: var(--wset-wheat);
+  --bg-default:   var(--wset-white);
+  --bg-alt:       var(--wset-warm-grey);
+  --bg-brand:     var(--wset-heritage-blue);
+  --bg-wheat:     var(--wset-wheat);
+  --border-subtle: rgba(26,26,26,0.12);
+  --border-brand:  var(--wset-heritage-blue);
+
+  /* -------- Type families -------- */
+  --font-headline:  'Oswald', 'Trade Gothic Next LT Pro', 'Arial Narrow', Arial, sans-serif;
+  --font-pullout:   'Fraunces', 'Larken', Georgia, 'Times New Roman', serif;
+  --font-body:      'Lato', 'Elza', Arial, Helvetica, sans-serif;
+  --font-system:    Arial, Helvetica, sans-serif;
+
+  /* -------- Type scale (display first — headlines dominate) -------- */
+  --fs-display:  clamp(64px, 10vw, 160px);
+  --fs-h1:       clamp(44px, 6vw, 88px);
+  --fs-h2:       clamp(32px, 4vw, 56px);
+  --fs-h3:       28px;
+  --fs-subhead:  20px;
+  --fs-standfirst: 22px;
+  --fs-body:     16px;
+  --fs-small:    14px;
+  --fs-caption:  12px;
+
+  /* -------- Spacing (8pt base) -------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  /* -------- Radii — WSET uses rounded buttons; cards more squared -------- */
+  --radius-button: 999px;   /* pill */
+  --radius-card:   8px;
+  --radius-field:  4px;
+
+  /* -------- Shadow (minimal, editorial brand) -------- */
+  --shadow-sm: 0 1px 2px rgba(26,26,26,0.06);
+  --shadow-md: 0 6px 20px rgba(26,26,26,0.08);
+
+  /* -------- Layout -------- */
+  --max-content: 1280px;
+  --gutter: 24px;
+}
+
+/* =========================================================
+   Base + semantic selectors
+   ========================================================= */
+html, body {
+  margin: 0;
+  background: var(--bg-default);
+  color: var(--fg-primary);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Headlines — ALWAYS uppercase, Oswald (Trade Gothic Next),
+   tracking -30 (~-0.03em), leading 90% of font size */
+h1, h2, .h-display, .h-headline {
+  font-family: var(--font-headline);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+  color: var(--fg-brand);
+  margin: 0 0 var(--space-4);
+  text-wrap: balance;
+}
+.h-display { font-size: var(--fs-display); }
+h1         { font-size: var(--fs-h1); }
+h2         { font-size: var(--fs-h2); }
+
+/* Sub-headings — Elza Bold, sentence case */
+h3, .h-sub {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--fs-h3);
+  letter-spacing: 0;
+  color: var(--fg-brand);
+  margin: 0 0 var(--space-3);
+}
+.subhead {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--fs-subhead);
+  color: var(--fg-brand);
+}
+
+/* Standfirsts + pull-outs — Larken/Fraunces, sentence case */
+.standfirst, .pullout {
+  font-family: var(--font-pullout);
+  font-weight: 400;
+  font-size: var(--fs-standfirst);
+  line-height: 1.3;
+  color: var(--fg-brand);
+  text-wrap: pretty;
+}
+.pullout {
+  font-size: clamp(24px, 2.4vw, 36px);
+  line-height: 1.25;
+}
+.pullout::before { content: "\201C"; margin-right: 0.15em; }
+.pullout::after  { content: "\201D"; margin-left: 0.15em; }
+
+/* Body */
+p, .body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  color: var(--fg-primary);
+  margin: 0 0 var(--space-4);
+  text-wrap: pretty;
+}
+.small   { font-size: var(--fs-small); }
+.caption { font-size: var(--fs-caption); color: rgba(26,26,26,0.72); }
+
+/* On-brand inversions */
+.on-brand,
+.bg-brand {
+  background: var(--bg-brand);
+  color: var(--fg-on-brand);
+}
+.on-brand h1, .on-brand h2, .on-brand h3,
+.on-brand .h-display, .on-brand .h-headline, .on-brand .h-sub,
+.on-brand .standfirst, .on-brand .pullout, .on-brand .subhead {
+  color: var(--fg-on-brand);
+}
+.on-brand .accent { color: var(--fg-accent-on-brand); } /* wheat */
+
+.on-wheat { background: var(--wset-wheat); color: var(--wset-black); }
+.on-warm-grey { background: var(--wset-warm-grey); color: var(--wset-black); }
+
+/* Uppercase varying-word-size helper (see Playbook p.52) */
+.headline-split .big,
+.headline-split .small {
+  display: inline-block;
+  vertical-align: baseline;
+}
+.headline-split .small { font-size: 50%; }
+
+/* Links */
+a {
+  color: var(--fg-brand);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1.5px;
+}
+a:hover { opacity: 0.8; }
+
+/* Buttons — rounded (pill) per brand guidance */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--fs-body);
+  padding: 14px 28px;
+  border-radius: var(--radius-button);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: background-color .15s ease, color .15s ease, border-color .15s ease, transform .15s ease;
+  text-decoration: none;
+  line-height: 1;
+}
+.btn-primary {
+  background: var(--wset-heritage-blue);
+  color: var(--wset-white);
+}
+.btn-primary:hover { background: #2A44C9; }
+.btn-primary:active { transform: translateY(1px); }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--wset-heritage-blue);
+  border-color: var(--wset-heritage-blue);
+}
+.btn-secondary:hover { background: var(--wset-heritage-blue); color: var(--wset-white); }
+
+.btn-on-brand {
+  background: var(--wset-wheat);
+  color: var(--wset-heritage-blue);
+}
+.btn-on-brand:hover { background: var(--wset-white); }
+
+.btn-ghost-on-brand {
+  background: transparent;
+  color: var(--wset-white);
+  border-color: var(--wset-white);
+}
+.btn-ghost-on-brand:hover { background: var(--wset-white); color: var(--wset-heritage-blue); }
+
+/* Cards */
+.card {
+  background: var(--bg-default);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+
+/* Chips / tags */
+.chip {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--wset-wheat);
+  color: var(--wset-heritage-blue);
+  font-weight: 700;
+  font-size: var(--fs-caption);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Arched/vertical type helper — set individual letters on a path w/ JS,
+   OR use this simple vertical stacker for short words */
+.vstack {
+  display: inline-flex;
+  flex-direction: column;
+  font-family: var(--font-headline);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  line-height: 1;
+}
+.vstack span { display: block; }
