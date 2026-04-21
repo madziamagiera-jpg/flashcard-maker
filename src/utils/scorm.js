@@ -229,8 +229,10 @@ function standaloneJS() {
     html += '</div>';
     root.innerHTML = html;
     bind();
-    if(pos >= 0 && pos < total) fitAnswer();
-    setTimeout(applyWrapSize, 0);
+    setTimeout(function(){
+      applyWrapSize();
+      if(pos >= 0 && pos < total) fitAnswer();
+    }, 0);
   }
 
   window.addEventListener('resize', applyWrapSize);
